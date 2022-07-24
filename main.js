@@ -301,12 +301,12 @@
  * BT4:
  */
  document.getElementById('btnTinh').onclick = function () {
-    //Dau vao
+    //input
     var name1 = document.getElementById('name1').value;
     var x1 = document.getElementById('x1').value * 1;
     var y1 = document.getElementById('y1').value * 1;
   
-    var name2 = document.getElementById(name2).value;
+    var name2 = document.getElementById('name2').value;
     var x2 = document.getElementById('x2').value * 1;
     var y2 = document.getElementById('y2').value * 1;
   
@@ -314,42 +314,31 @@
     var x3 = document.getElementById('x3').value * 1;
     var y3 = document.getElementById('y3').value * 1;
   
-    var distance_1, distance_2, distance_3;
-    var furthest_stu, furthest_x, furthest_y;
+    var xSchool = document.getElementById('xSchool').value * 1;
+    var ySchool = document.getElementById('ySchool').value * 1;
+
+    // var distance_1, distance_2, distance_3;
+    // var furthest_stu, furthest_x, furthest_y;
+    var sv1, sv2, sv3;
+    var name;
     var showInfor = "";
   
-    // Xu ly
-    x1 = parseFloat(x1);
-    x2 = parseFloat(x2);
-    x3 = parseFloat(x3);
-    y1 = parseFloat(y1);
-    y2 = parseFloat(y2);
-    y3 = parseFloat(y3);
-  
-    distance_1 = Math.pow(x1, 2) + Math.pow(y1, 2);
-    distance_1 = Math.sqrt(distance_1);
-  
-    distance_2 = Math.pow(x2, 2) + Math.pow(y2, 2);
-    distance_2 = Math.sqrt(distance_2);
-  
-    distance_3 = Math.pow(x3, 2) + Math.pow(y3, 2);
-    distance_3 = Math.sqrt(distance_3);
-    if (distance_1 < distance_2 && distance_1 < distance_3) {
-      furthest_stu = name1;
-      furthest_x = x1;
-      furthest_y = y1;
-    } else if (distance_2 < distance_1 && distance_2 < distance_3) {
-      furthest_stu = name2;
-      furthest_x = x2;
-      furthest_y = y2;
-    } else {
-      furthest_stu = name3;
-      furthest_x = x3;
-      furthest_y = y3;
+    //process
+
+    sv1 = Math.sqrt(Math.pow((xSchool - x1), 2) + Math.pow((ySchool - y1), 2));
+    sv2 = Math.sqrt(Math.pow((xSchool - x2), 2) + Math.pow((ySchool - y2), 2));
+    sv3 = Math.sqrt(Math.pow((xSchool - x3), 2) + Math.pow((ySchool - y3), 2));
+
+    if(sv1 < sv2 && sv1 < sv3 && sv2 < sv3) {
+      name = name3;
+    }else if(sv3 < sv1 && sv3 < sv2 && sv1 < sv2) {
+      name = name2;
+    }else {
+      name = name1;
     }
   
-    showInfor += "<p>" + "Sinh viên xa trường nhất : " + furthest_stu + "</p>";
-  
-    //ouput
+    showInfor = "<p>" + "Sinh viên xa trường nhất : " + name + "</p>";
+
+    //output
     document.getElementById("result").innerHTML = showInfor;
   };
